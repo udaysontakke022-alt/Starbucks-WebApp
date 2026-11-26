@@ -20,13 +20,8 @@ pipeline {
         }
         stage("Sonarqube Analysis "){
             steps{
-                withSonarQubeEnv('sonar-server') {
-                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=starbucks \
-                    -Dsonar.projectKey=starbucks '''
-                }
-            }
-        }
-        stage("quality gate"){
+       -Dsonar.projectKey=starbucks '''
+           stage("quality gate"){
            steps {
                 script {
                     waitForQualityGate abortPipeline: false, credentialsId: 'Sonar-token' 
